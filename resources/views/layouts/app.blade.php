@@ -38,6 +38,9 @@
                             <a class="nav-link {{request()->routeIs("services") ? "fw-bold" : ""}}" href="{{route('services')}}">Каталог</a>
                         </li>
                         <li>
+                            <a class="nav-link {{request()->routeIs("order_page") ? "fw-bold" : ""}}" href="{{route('order_page')}}">Заказы</a>
+                        </li>
+                        <li>
                             <a class="nav-link {{request()->routeIs("admin") ? "fw-bold" : ""}}" href="{{ route('admin') }}">Админка</a>
                         </li>
                     </ul>

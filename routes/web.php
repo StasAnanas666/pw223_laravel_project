@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ServiceController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +30,5 @@ Route::post("/services", [ServiceController::class, "store"])->name("add_service
 
 //заказы
 Route::get("/order-service/{service?}", [OrderController::class, "create"])->name("order_service");
+Route::get("/order-page", [OrderController::class, "index"])->name("order_page");
+Route::post("/save-order", [OrderController::class, "store"])->name("save_order");
