@@ -1,0 +1,3 @@
+.wood-background {
+    background: linear-gradient(rgb(255,255,255,0.4), rgb(255,255,255,0.4)), url(../images/wood_bg.jpg) center/cover fixed;
+}

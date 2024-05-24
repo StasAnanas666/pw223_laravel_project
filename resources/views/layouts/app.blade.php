@@ -12,6 +12,8 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="{{url('css/app.css')}}">
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -32,7 +34,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav ms-5 me-auto">
                         <li>
-                            <a class="nav-link" href="/home">Главная</a>
+                            <a class="nav-link" href="{{url("/")}}">Главная</a>
                         </li>
                         <li>
                             <a class="nav-link {{request()->routeIs("services") ? "fw-bold" : ""}}" href="{{route('services')}}">Каталог</a>
@@ -68,10 +70,11 @@
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="/dashboard">Профиль</a>
+                                    <a class="dropdown-item" href="{{route("my_orders")}}">Мои заказы</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('Выйти') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

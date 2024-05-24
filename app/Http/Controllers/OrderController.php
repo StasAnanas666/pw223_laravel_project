@@ -39,4 +39,11 @@ class OrderController extends Controller
 
         return redirect(route("services"));
     }
+
+    public function userOrders() {
+        $user = auth()->user();
+        $orders = $user -> orders;
+
+        return view("users.orders", ["orders" => $orders]);
+    }
 }

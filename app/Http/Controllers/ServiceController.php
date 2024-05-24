@@ -18,6 +18,10 @@ class ServiceController extends Controller
         return view("services.index", ["services" => $services]);
     }
 
+    function create() {
+        return view("admins.admin");
+    }
+
     function store(Request $request) {
         $service = new Service();
         $imagePath = null;
