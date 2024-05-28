@@ -11,9 +11,21 @@ class Service extends Model
 
     protected $primaryKey = "id";
     protected $table = "services";
-    protected $fillable = ["name", "price", "image", "description", "created_at", "updated_at"];
+    protected $fillable = [
+        "name", 
+        "price", 
+        "image", 
+        "description",
+        "user_id", 
+        "created_at", 
+        "updated_at"
+    ];
 
     public function additionalServices() {
         return $this->hasMany(AdditionalService::class);
+    }
+
+    public function user() {
+        return $this->belongsTo(User::class);
     }
 }

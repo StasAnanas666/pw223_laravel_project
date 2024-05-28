@@ -60,10 +60,7 @@
                 <input type="text" name="additional_services[INDEX][name]" class="form-control" placeholder="Название дополнительной услуги..." required>
             </div>
             <div class="form-group my-3">
-                <input type="number" class="form-control" min="0" name="additional_services[INDEX][price]" placeholder="Цена дополнительной услуги..." required>
-            </div>
-            <div class="form-group my-3">
-                <input type="file" name="additional_services[INDEX][image]" class="form-control" accept="image/*" required>
+                <input type="number" class="form-control" min="0" step="0.01" name="additional_services[INDEX][price]" placeholder="Цена дополнительной услуги..." required>
             </div>
             <div class="form-group my-3">
                 <textarea class="form-control" name="additional_services[INDEX][description]" placeholder="Описание дополнительной услуги..." required></textarea>

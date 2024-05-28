@@ -29,6 +29,10 @@ Auth::routes();
 Route::get('/catalog', [ServiceController::class, 'index'])->name('services');
 //страница админа, добавление услуг, доступна только при авторизации
 Route::get("/admin", [ServiceController::class, "create"])->middleware("auth")->name("admin");
+//форма редактирования услуг
+Route::get("/edit-service/{service}", [ServiceController::class, "edit"])->middleware("auth")->name("edit_service");
+//удаление услуги
+Route::delete("/services/{service}", [ServiceController::class, "destroy"])->middleware("auth")->name("delete_service");
 //маршрут сохранения услуги в бд
 Route::post("/services", [ServiceController::class, "store"])->name("add_service");
 
@@ -42,3 +46,5 @@ Route::get("/order-page", [OrderController::class, "index"])->name("order_page")
 Route::post("/save-order", [OrderController::class, "store"])->name("save_order");
 //страница заказов авторизованного пользователя
 Route::get("/my-orders", [OrderController::class, "userOrders"])->name("my_orders")->middleware("auth");
+//страница просмотра и редактирования добавленных пользователем услуг
+Route::get("/my-services", [ServiceController::class, "myServices"])->name("my_services")->middleware("auth");

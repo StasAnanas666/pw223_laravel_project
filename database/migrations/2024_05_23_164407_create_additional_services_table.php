@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string("image")->nullable();
             $table->text("description");
             $table->unsignedBigInteger("service_id");
-            $table->foreign("service_id")->references("id")->on("services")->delete("cascade");
+            $table->foreign("service_id")->references("id")->on("services")->onDelete("cascade");
             $table->timestamps();
         });
     }

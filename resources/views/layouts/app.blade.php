@@ -71,6 +71,7 @@
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="/dashboard">Профиль</a>
                                     <a class="dropdown-item" href="{{route("my_orders")}}">Мои заказы</a>
+                                    <a class="dropdown-item" href="{{route("my_services")}}">Мои услуги</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
