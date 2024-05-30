@@ -31,6 +31,8 @@ Route::get('/catalog', [ServiceController::class, 'index'])->name('services');
 Route::get("/admin", [ServiceController::class, "create"])->middleware("auth")->name("admin");
 //форма редактирования услуг
 Route::get("/edit-service/{service}", [ServiceController::class, "edit"])->middleware("auth")->name("edit_service");
+//изменение услуги
+Route::put("/update-service", [ServiceController::class, "update"])->name("update_service");
 //удаление услуги
 Route::delete("/services/{service}", [ServiceController::class, "destroy"])->middleware("auth")->name("delete_service");
 //маршрут сохранения услуги в бд
