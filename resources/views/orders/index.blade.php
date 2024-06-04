@@ -2,7 +2,7 @@
 
 @section("content")
 <div class="container">
-    <a href="{{route("services")}}" class="nav-link my-4">← Назад к списку услуг</a>
+    <a href="{{route("services")}}" class="ajax-link nav-link my-4">← Назад к списку услуг</a>
 
     <h1 class="mb-3">Оформление заказа</h1>
 
@@ -49,25 +49,25 @@
 
         <script>
             function calculateTotalPrice() {
-                var checkboxes = document.querySelectorAll("input[type='checkbox']:checked");
+    var checkboxes = document.querySelectorAll("input[type='checkbox']:checked");
 
-                var total = parseFloat("{{$service->price}}");
+    var total = parseFloat("{{$service->price}}");
 
-                checkboxes.forEach(checkbox => {
-                    total += parseFloat(checkbox.value);
-                })
+    checkboxes.forEach(checkbox => {
+        total += parseFloat(checkbox.value);
+    })
 
-                document.querySelector("#total-price").textContent = total;
-                document.querySelector("#total_price").value = total;
-            }
+    document.querySelector("#total-price").textContent = total;
+    document.querySelector("#total_price").value = total;
+}
 
-            var checkboxes = document.querySelectorAll("input[type='checkbox']");
-            checkboxes.forEach(checkbox => {
-                checkbox.addEventListener("change", calculateTotalPrice);
-            })
+var checkboxes = document.querySelectorAll("input[type='checkbox']");
+checkboxes.forEach(checkbox => {
+    checkbox.addEventListener("change", calculateTotalPrice);
+})
 
-            document.querySelector("#total-price").value = calculateTotalPrice();
-            calculateTotalPrice();
+document.querySelector("#total-price").value = calculateTotalPrice();
+calculateTotalPrice();
         </script>
     @else
         <p>Выберите услугу для заказа</p>

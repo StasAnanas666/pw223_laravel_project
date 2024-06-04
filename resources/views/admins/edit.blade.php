@@ -27,6 +27,7 @@
     <h3 class="my-4">Редактировать услугу</h3>
 
     {{html()->modelForm($service, "PUT", route("update_service", $service))->class("my-5")->acceptsFiles()->open()}}
+    {{html() -> text("id") -> type("hidden") -> value($service -> id)}}
     <div class="form-group my-3">
         {{html()->text("name")->class("form-control")->placeholder("Название услуги...")}}
     </div>

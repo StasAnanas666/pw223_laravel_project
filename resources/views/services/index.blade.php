@@ -14,7 +14,7 @@
                     <h5 class="card-title" style="height: 44px">{{$service->name}}</h5>
                     <p class="card-text overflow-auto" style="height: 80px">{{$service->description}}</p>
                     <p class="card-text">{{$service->price}} руб.</p>
-                    <a href="{{route('order_service', $service)}}" class="btn btn-primary">Перейти к заказу</a>
+                    <a href="{{route('order_service', $service)}}" class="ajax-link btn btn-primary">Перейти к заказу</a>
                 </div>
             </div>
         @endforeach

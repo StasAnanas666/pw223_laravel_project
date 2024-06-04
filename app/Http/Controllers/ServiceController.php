@@ -80,7 +80,7 @@ class ServiceController extends Controller
         return view("admins.edit", ["service" => $service]);
     }
 
-    function update(Request $request, Service $service)
+    function update(Request $request)
     {
         //валидация данных
         $validated = $request->validate([
@@ -88,11 +88,7 @@ class ServiceController extends Controller
             'description' => 'required|string',
             'image' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
             'price' => 'required|decimal:0,2',
-            'additional_services.*.name' => 'sometimes|required|string|max:100',
-            'additional_services.*.price' => 'sometimes|required|decimal:0,2',
-            'additional_services.*.description' => 'sometimes|required|string'
         ]);
-
 
         //сохранение файла в resources/images
         if ($request->hasFile("image")) {
@@ -102,26 +98,32 @@ class ServiceController extends Controller
             $validated['image'] = $imagePath;
         }
 
-        //продолжаем работу с валидированными данными, сохраняем в БД
-        $service->update($validated);
+        Service::where('id', '=', $request->input("id"))->update($validated);
 
-        if ($request->has('additional_services')) {
-            foreach ($request->input('additional_services') as $additionalService) {
+        if ($request->has("additional_services")) {
+            $request->validate([
+                'additional_services.*.name' => 'sometimes|required|string|max:100',
+                'additional_services.*.price' => 'sometimes|required|decimal:0,2',
+                'additional_services.*.description' => 'sometimes|required|string'
+            ]);
+            foreach ($request->input("additional_services") as $additionalService) {
                 if (isset($additionalService["id"])) {
-                    $additionalService = $service->additionalServices()->find($additionalService["id"]);
-                    if ($additionalService) {
-                        $additionalService->update([
-                            'name' => $additionalService['name'],
-                            'price' => $additionalService['price'],
-                            'description' => $additionalService['description']
+                    $additionalServices = AdditionalService::where('id', '=', $additionalService["id"])->get();
+                    if ($additionalServices) {
+                        AdditionalService::where('id', '=', $additionalService["id"])->update([
+                            // $addValidated,
+                            "service_id" => $request->input("id"),
+                            "name" => $additionalService["name"],
+                            "price" => $additionalService["price"],
+                            "description" => $additionalService["description"],
                         ]);
                     }
                 } else {
-                    $service->additionalServices()->create([
-                        'service_id' => $service->id,
-                        'name' => $additionalService['name'],
-                        'price' => $additionalService['price'],
-                        'description' => $additionalService['description']
+                    AdditionalService::create([
+                        "service_id" => $request->input("id"),
+                        "name" => $additionalService["name"],
+                        "price" => $additionalService["price"],
+                        "description" => $additionalService["description"]
                     ]);
                 }
             }

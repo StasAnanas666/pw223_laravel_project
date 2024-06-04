@@ -34,16 +34,16 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav ms-5 me-auto">
                         <li>
-                            <a class="nav-link" href="{{url("/")}}">Главная</a>
+                            <a class="nav-link ajax-link" href="{{url("/")}}">Главная</a>
                         </li>
                         <li>
-                            <a class="nav-link {{request()->routeIs("services") ? "fw-bold" : ""}}" href="{{route('services')}}">Каталог</a>
+                            <a class="nav-link ajax-link" href="{{route('services')}}">Каталог</a>
                         </li>
                         <li>
-                            <a class="nav-link {{request()->routeIs("order_page") ? "fw-bold" : ""}}" href="{{route('order_page')}}">Заказы</a>
+                            <a class="nav-link ajax-link" href="{{route('order_page')}}">Заказы</a>
                         </li>
                         <li>
-                            <a class="nav-link {{request()->routeIs("admin") ? "fw-bold" : ""}}" href="{{ route('admin') }}">Админка</a>
+                            <a class="nav-link ajax-link" href="{{ route('admin') }}">Админка</a>
                         </li>
                     </ul>
 
@@ -53,13 +53,13 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link ajax-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link ajax-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
@@ -69,9 +69,9 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/dashboard">Профиль</a>
-                                    <a class="dropdown-item" href="{{route("my_orders")}}">Мои заказы</a>
-                                    <a class="dropdown-item" href="{{route("my_services")}}">Мои услуги</a>
+                                    <a class="dropdown-item ajax-link" href="/dashboard">Профиль</a>
+                                    <a class="dropdown-item ajax-link" href="{{route("my_orders")}}">Мои заказы</a>
+                                    <a class="dropdown-item ajax-link" href="{{route("my_services")}}">Мои услуги</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -90,9 +90,11 @@
         </nav>
         @show
 
-        <main class="py-4">
+        <main id="content" class="py-4">
             @yield('content')
         </main>
     </div>
+
+    <script src="{{url('js/main.js')}}"></script>
 </body>
 </html>
