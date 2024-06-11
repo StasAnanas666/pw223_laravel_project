@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (e.target.classList.contains("ajax-link")) {
             e.preventDefault();
             const url = e.target.getAttribute("href");
-            console.log(url);
             try {
                 const response = await fetchPage(url);
                 const html = new DOMParser().parseFromString(
@@ -21,6 +20,27 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
     });
+
+    //чекбоксы доп услуг, пересчет суммы заказа
+    document.addEventListener("change", (e) => {
+        if(e.target.classList.contains("additional-service-checkbox")) {
+            let totalPriceElement = document.querySelector("#total-price");
+            console.log(totalPriceElement);
+            const checkbox = e.target;
+            let price = parseFloat(checkbox.value);
+            console.log(price);
+            let totalPrice = parseFloat(totalPriceElement.textContent);
+            console.log(totalPrice);
+            if(checkbox.checked) {
+                console.log("Checked!");
+                totalPrice += price;
+            }
+            else {
+                totalPrice -= price;
+            }
+            totalPriceElement.textContent = totalPrice;
+        }
+    })
 });
 
 async function fetchPage(url) {

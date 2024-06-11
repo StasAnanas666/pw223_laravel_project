@@ -28,7 +28,7 @@
             <ul class="list-group">
                 @foreach ($additionalServices as $additionalService)
                     <li class="list-group-item">
-                        <input type="checkbox" name="additional-services[]" id="{{$additionalService->id}}" value="{{$additionalService->price}}" class="form-check-input" />
+                        <input type="checkbox" name="additional-services[]" id="{{$additionalService->id}}" value="{{$additionalService->price}}" class="additional-service-checkbox form-check-input" />
                         {{$additionalService->name}} - Цена: {{$additionalService->price}} руб.
                     </li>
                 @endforeach
@@ -43,32 +43,9 @@
                 <select name="ordertime" id="ordertime" class="form-select w-50"></select>
             </div>
             <input type="hidden" name="total_price" id="total_price" />
-            <h3 class="mt-4">Общая сумма заказа: <span id="total-price" class="fw-bold"></span> руб.</h3>
+            <h3 class="mt-4">Общая сумма заказа: <span id="total-price" class="fw-bold">{{$service->price}}</span> руб.</h3>
             <button type="submit" class="btn btn-primary mt-5">Оформить заказ</button>
         </form>
-
-        <script>
-            function calculateTotalPrice() {
-    var checkboxes = document.querySelectorAll("input[type='checkbox']:checked");
-
-    var total = parseFloat("{{$service->price}}");
-
-    checkboxes.forEach(checkbox => {
-        total += parseFloat(checkbox.value);
-    })
-
-    document.querySelector("#total-price").textContent = total;
-    document.querySelector("#total_price").value = total;
-}
-
-var checkboxes = document.querySelectorAll("input[type='checkbox']");
-checkboxes.forEach(checkbox => {
-    checkbox.addEventListener("change", calculateTotalPrice);
-})
-
-document.querySelector("#total-price").value = calculateTotalPrice();
-calculateTotalPrice();
-        </script>
     @else
         <p>Выберите услугу для заказа</p>
     @endif

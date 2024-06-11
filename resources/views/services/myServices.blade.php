@@ -14,7 +14,7 @@
                     <h5 class="card-title" style="height: 44px">{{$service->name}}</h5>
                     <p class="card-text">{{$service->price}} руб.</p>
                     <div class="d-flex justify-content-between">
-                        <a href="{{route('edit_service', $service->id)}}" class="d-flex align-items-center justify-content-between btn btn-sm btn-warning text-light">
+                        <a href="{{route('edit_service', $service->id)}}" class="ajax-link d-flex align-items-center justify-content-between btn btn-sm btn-warning text-light">
                             <span class="material-symbols-outlined">
                                 edit
                             </span>

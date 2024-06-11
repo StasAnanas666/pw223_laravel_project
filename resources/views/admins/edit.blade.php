@@ -22,7 +22,7 @@
     </div>
     @endif
 
-    <a href="{{route("my_services")}}" class="nav-link text-primary">← Назад к услугам</a>
+    <a href="{{route("my_services")}}" class="ajax-link nav-link text-primary">← Назад к услугам</a>
 
     <h3 class="my-4">Редактировать услугу</h3>
 
